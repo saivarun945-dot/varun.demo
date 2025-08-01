@@ -1,0 +1,131 @@
+body {
+    font-family: 'SF Pro Display', 'Helvetica Neue', Arial, sans-serif; /* Similar to Apple's font */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #587991; /* Dark background */
+    margin: 0;
+    overflow: hidden; /* Hide potential scrollbars */
+}
+
+.calculator {
+    background-color: #22223b; /* Darker grey for the calculator body */
+    border-radius: 20px; /* Rounded corners */
+    padding: 15px;
+    box-shadow: 0 10px 30px rgba(35, 25, 25, 0.5); /* Subtle shadow */
+    width: 330px; /* Adjust as needed */
+    box-sizing: border-box; /* Include padding in width */
+}
+
+.display {
+    margin-bottom: 15px;
+    text-align: right;
+}
+
+#calculator-screen {
+    width: 100%;
+    background-color: transparent;
+    border: none;
+    color: rgb(5, 200, 38);
+    font-size: 3.5em; 
+    padding: 8px;
+    box-sizing: border-box;
+    outline: none; 
+}
+
+.buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); 
+        gap: 7px; 
+}
+
+.button {
+    width: 65px; /* Fixed width for circular buttons */
+    height: 65px; /* Fixed height for circular buttons */
+    border-radius: 50%; /* Makes buttons circular */
+    border: none;
+    font-size: 1.8em;
+    color: rgb(255, 241, 241);
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.2s ease; /* Smooth hover effect */
+    -webkit-user-select: none; /* Prevent text selection on buttons */
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.button.number {
+    background-color: #000000; /* Dark grey for numbers */
+}
+
+.button.function {
+    background-color: #888888; /* Lighter grey for functions (AC, +/-, %) */
+    color: black; /* Black text for function buttons */
+}
+
+.button.operator {
+    background-color: #888682; /* Orange for operators */
+}
+
+.button.equals {
+    background-color: #935e13; 
+    grid-column: span 1; /* Make it span 1 column, adjust if you want it wider */
+}
+
+.button[data-value="0"] {
+    grid-column: span 2; /* Span two columns */
+    border-radius: 32.5px; /* Half of height to make it rounded on ends */
+    width: auto; /* Allow width to be determined by grid-column-span */
+    justify-content: flex-start; /* Align text to the left within the wider button */
+    padding-left: 25px; /* Add some padding to the left */
+}
+
+.button:active {
+    filter: brightness(120%); /* Slight brightness on press */
+}
+
+/* For the top circles (traffic light style) */
+.top-dots {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 15px;
+    padding-left: 10px;
+}
+
+.dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+}
+
+.red { background-color: #c33030; }
+.yellow { background-color: #000000; }
+.grey { background-color: #0cc5ee; } 
+
+
+.button[data-value="AC"]::after {
+    content: "Clear all (or press Escape)";
+    position: absolute;
+    top: -90px; 
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(201, 39, 39, 0.7);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 0.8em;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    z-index: 10;
+}
+
+.button[data-value="AC"]:hover::after {
+    opacity: 1;
+}
+
